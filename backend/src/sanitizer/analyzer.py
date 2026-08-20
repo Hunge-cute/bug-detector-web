@@ -8,6 +8,7 @@ from typing import List, Tuple, Dict
 from enum import Enum
 from data.transform import *
 from pathlib import Path
+from treesitter_compat import java_language, set_parser_language
 
 sys.path.append(path.dirname(path.dirname(path.dirname(path.abspath(__file__)))))
 
@@ -83,15 +84,12 @@ class TSParser:
 
         self.static_field_info: Dict[str, str] = {}
 
-        cwd = Path(__file__).resolve().parent.absolute()
-        TSPATH = cwd / "../../lib/build/"
-        language_path = TSPATH / "my-languages.so"
         # Load the Java language
-        self.java_lang: Language = Language(str(language_path), "java")
+        self.java_lang: Language = java_language()
 
         # Initialize the parser
         self.parser: tree_sitter.Parser = tree_sitter.Parser()
-        self.parser.set_language(self.java_lang)
+        set_parser_language(self.parser, self.java_lang)
 
     def parse_package_info(self, file_path: str, source_code: str, root_node: tree_sitter.Tree) -> str:
         """

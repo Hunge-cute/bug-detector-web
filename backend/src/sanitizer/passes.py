@@ -3,7 +3,7 @@ from data.transform import *
 from model.llm import *
 from model.utils import *
 from parser.parser import *
-import tree_sitter_java as tsjava
+from treesitter_compat import java_language, set_parser_language
 import re
 import json
 from pathlib import Path
@@ -377,12 +377,9 @@ class Passes:
         pattern = r"Example (.+?)END REPORT----------------\n"
         matches = re.findall(pattern, "\n".join(example_str_list), re.DOTALL)
 
-        cwd = Path(__file__).resolve().parent.absolute()
-        TSPATH = cwd / "../../lib/build/"
-        language_path = TSPATH / "my-languages.so"
-        java_lang: Language = Language(str(language_path), "java")
+        java_lang: Language = java_language()
         parser: tree_sitter.Parser = tree_sitter.Parser()
-        parser.set_language(java_lang)
+        set_parser_language(parser, java_lang)
 
         src_syntactic_types = set([])
         sink_syntactic_types = set([])

@@ -18,6 +18,11 @@
 # production
 /build
 
+# python backend
+.venv/
+__pycache__/
+server.log
+
 # misc
 .DS_Store
 *.pem

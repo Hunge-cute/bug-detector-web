@@ -1,8 +1,7 @@
 from typing import *
 import tree_sitter
 from pathlib import Path
-from tree_sitter import Language
-import tree_sitter_java as tsjava
+from treesitter_compat import java_language, set_parser_language
 
 
 def transform_function_split_cluster_files(file_cluster: List[str]) -> None:
@@ -130,9 +129,9 @@ def obfuscate(source_code):
     TSPATH = cwd / "../lib/build/"
     language_path = TSPATH / "my-languages.so"
 
-    JAVA_LANGUAGE = Language(str(language_path), "java")
+    JAVA_LANGUAGE = java_language()
     parser = tree_sitter.Parser()
-    parser.set_language(JAVA_LANGUAGE)
+    set_parser_language(parser, JAVA_LANGUAGE)
 
     t = parser.parse(bytes(source_code, "utf8"))
     root_node = t.root_node
