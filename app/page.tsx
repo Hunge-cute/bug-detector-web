@@ -1,12 +1,5 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Bug,
-  FileCode,
-  GitBranch,
-  Shield,
-  Zap,
-} from "lucide-react";
+import { Bug, FileCode, Shield, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HeroSection } from "@/components/hero-section";
@@ -159,27 +152,13 @@ export default function Home() {
               </p>
             </Card>
           </div>
-          <div className="mx-auto flex justify-center mt-12">
-            <Link
-              href="https://github.com/chengpeng-wang/LLMSAN"
-              target="_blank"
-            >
-              <Button className="gap-2">
-                <GitBranch className="h-4 w-4" />
-                View the LLMSAN Research Project
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
         </section>
       </main>
 
       <footer className="border-t py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row mx-auto">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-            Built with Next.js, Tailwind CSS and shiki. An original
-            implementation inspired by the LLMSAN research project (EMNLP
-            Findings 2024).
+            Built with Next.js, Tailwind CSS and shiki.
           </p>
         </div>
       </footer>

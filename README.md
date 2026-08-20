@@ -5,18 +5,14 @@ sanitization pipeline. Upload or paste source code, let a large language model
 find candidate bugs, verify them with data-flow sanitization, and generate fixed
 (sanitized) code — all from a clean, responsive UI.
 
-This project is an original implementation inspired by the
-[LLMSAN](https://github.com/chengpeng-wang/LLMSAN) research (EMNLP Findings
-2024) and mirrors the structure of
-[`dunnokiet/llmsan-web`](https://github.com/dunnokiet/llmsan-web).
-
 ## Overview
 
 The system is split into two pieces:
 
 - **Backend** — a FastAPI service that runs the LLM analysis, performs
-  data-flow sanitization and returns an NDJSON event stream over HTTP.
-  See e.g. [`llmsan-api`](https://github.com/dunnokiet/llmsan-api).
+  data-flow sanitization and returns an NDJSON event stream over HTTP. This
+  repo is frontend-only; any backend exposing the endpoints documented below
+  can be used.
 - **Frontend** — this Next.js app. The browser talks to `/api/*`, which Next.js
   proxies to the backend via the `API_BASE_URL` rewrite.
 
